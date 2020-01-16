@@ -7,7 +7,7 @@ module.exports = {
     },
     context: path.resolve(__dirname, "src"),
     output: {
-        path.resolve(__dirname,"dist"),
+        path: path.resolve(__dirname,"dist"),
         filename: 'index.js',
     },
 };
