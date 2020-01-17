@@ -6,12 +6,12 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "index.js"
-    }
+    },
     /*modules: {
 
     }*/
     plugins: [
-        new HtmlWebpackPlugin()
+        new HtmlWebpackPlugin({ template: path.resolve(__dirname, "src", "index.html"), })
     ]
 
 }

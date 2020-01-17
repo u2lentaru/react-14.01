@@ -1,1 +1,1 @@
-console.log("Hello! Now is ",(new Date).valueof());
+console.warn("Привет! сейчас ",(new Date).valueOf());
