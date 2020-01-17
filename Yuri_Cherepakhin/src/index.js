@@ -1,0 +1,1 @@
+console.log("Hello! Now is ",(new Date).valueof());
