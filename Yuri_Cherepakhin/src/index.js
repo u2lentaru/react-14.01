@@ -15,11 +15,15 @@ function MessageList({messages}) {
     return messages.map((message, index) => <Message {...message} key={index}/>)
 }
 
+const ButtonSend = () => (<button onClick={messages.push("Новое сообщение")} >Отправить сообщение</button>);
+
 //const MessageList = ({messages}) => {
 //    return messages.map((message) => <Message name={message.name} content={message.content}/>)
 //}
 
+ReactDom.render(<ButtonSend/>, document.getElementById("broot"));
 ReactDom.render(<MessageList messages={messages}/>, document.getElementById("root"));
+
 
 //const Link = (title, link) => <a href={"https://" + link}>{title}</a>
     //return React.createElement("a", {"href": "https://"+props.href}, props.title);
