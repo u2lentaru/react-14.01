@@ -1,6 +1,5 @@
 import React from 'react';
 import Message from './Message';
-import { render } from 'react-dom';
 
 export default class MessageField extends React.Component {
     state = {
@@ -17,11 +16,11 @@ export default class MessageField extends React.Component {
 };
 
 render() {
-    const MessageElemets = this.state.messages.map((text,index) => 
+    const MessageElements = this.state.messages.map((text,index) => 
     (<Message key = {index} text = {text} /> ));
 
     return <div>
-        { MessageElemets } 
+        { MessageElements } 
         <button onClick={this.handleClick}>Send Message</button>
     </div>
 
