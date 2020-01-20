@@ -12,17 +12,17 @@ export default class MessageField extends React.Component {
 
 
     handleClick = () => {
-    this.setState({messages: [ ...this.state.messages, 'Good!'] });
+    this.setState(({messages}) => ({messages: [...messages, {name: 'Autor', content: 'Good!'}] }));
 };
 
 render() {
     const MessageElements = this.state.messages.map((text,index) => 
-    (<Message key={index} text={text}/>));
+    (<Message key={index} text {...text}/>));
 
-    return <div>
+    return <>
         {MessageElements} 
         <button onClick={this.handleClick}>Send Message</button>
-    </div>
+    </>
 
     }
 }
