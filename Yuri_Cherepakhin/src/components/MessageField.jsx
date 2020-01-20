@@ -17,10 +17,10 @@ export default class MessageField extends React.Component {
 
 render() {
     const MessageElements = this.state.messages.map((text,index) => 
-    (<Message key = {index} text = {text} /> ));
+    (<Message key={index} text={text}/>));
 
     return <div>
-        { MessageElements } 
+        {MessageElements} 
         <button onClick={this.handleClick}>Send Message</button>
     </div>
 
