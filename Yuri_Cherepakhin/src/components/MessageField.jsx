@@ -31,6 +31,5 @@ render() {
         {MessageElements} 
         <button onClick={this.handleClick}>Send Message</button>
     </>
-
     }
 }
