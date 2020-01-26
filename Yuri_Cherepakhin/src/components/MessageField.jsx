@@ -31,6 +31,6 @@ render() {
     return <div id='main' className='message-field'>
         {MessageElements} 
         <button onClick={this.handleClick}>Send Message</button>
-    <div/>
+    </div>
     }
 }
