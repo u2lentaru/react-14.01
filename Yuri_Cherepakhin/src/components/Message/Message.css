@@ -1,0 +1,15 @@
+.Message {
+    background-color: lightskyblue;
+    padding: 4px;
+    border-radius: 5px;
+    width: 30%;
+    align-self: flex-end;
+}
+
+.Message--robot {
+    align-self: flex-start;
+}
+
+.Message:not(:last-child){
+    margin-bottom: 20px;
+}
