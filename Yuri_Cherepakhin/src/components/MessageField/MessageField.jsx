@@ -4,6 +4,10 @@ import './MessageField.css';
 import PropTypes from 'prop-types';
 
 export default class MessageField extends React.Component {
+    constructor(props) {
+        super(props);
+        this.textinput = React.createRef();
+    }
     state = {
         messages: [
             {name:"Ivan", content:"Hello!"},
@@ -13,6 +17,9 @@ export default class MessageField extends React.Component {
         input: ''
     };
 
+    componentDidMount() {
+        this.textinput.current.focus();
+    }
 
     //handleClick = () => {
     //    this.setState(({messages}) => ({messages: [...messages, {name: 'Autor', content: 'Good!'}] }));
@@ -55,7 +62,9 @@ render() {
 
     return <div id='main' className='message-field'>
         {MessageElements} 
-        <input name = 'input'
+        <input 
+        ref = { this.textinput }
+        name = 'input'
         value={ this.state.input } 
         onChange = {this.handleChange} 
         onKeyUp = { (event) => this.handleKeyUp(event, this.state.input) } />
