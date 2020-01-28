@@ -13,3 +13,7 @@
 .Message:not(:last-child){
     margin-bottom: 20px;
 }
+
+.TextField {
+    width: 100%;
+}
