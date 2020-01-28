@@ -24,7 +24,7 @@ export default class MessageField extends React.Component {
     };
 
     handleChange = (event) => {
-        this.setState({ input: event.target.value });
+        this.setState({ [event.target.name]: event.target.value });
     };
 
     handleKeyUp = (event, message) => {
@@ -55,7 +55,9 @@ render() {
 
     return <div id='main' className='message-field'>
         {MessageElements} 
-        <input value={ this.state.input } onChange = {this.handleChange} 
+        <input name = 'input'
+        value={ this.state.input } 
+        onChange = {this.handleChange} 
         onKeyUp = { (event) => this.handleKeyUp(event, this.state.input) } />
         <button onClick={ () => this.handleClick(this.state.input)}>Send Message</button>
     </div>
