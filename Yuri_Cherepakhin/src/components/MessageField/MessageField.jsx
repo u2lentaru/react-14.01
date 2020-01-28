@@ -1,7 +1,10 @@
 import React from 'react';
 import Message from '../Message/Message';
 import './MessageField.css';
-import PropTypes from 'prop-types';
+import { TextField, FloatingActionButton } from 'material-ui';
+import SendIcon from 'material-ui/svg-icons/content/send';
+
+//import PropTypes from 'prop-types';
 
 export default class MessageField extends React.Component {
     constructor(props) {
@@ -62,13 +65,17 @@ render() {
 
     return <div id='main' className='message-field'>
         {MessageElements} 
-        <input 
+        <TextField
         ref = { this.textinput }
         name = 'input'
         value={ this.state.input } 
         onChange = {this.handleChange} 
-        onKeyUp = { (event) => this.handleKeyUp(event, this.state.input) } />
-        <button onClick={ () => this.handleClick(this.state.input)}>Send Message</button>
+        onKeyUp = { (event) => this.handleKeyUp(event, this.state.input) } 
+        />
+        <FloatingActionButton 
+        onClick={ () => this.handleClick(this.state.input)}>
+            <SendIcon/>
+        </FloatingActionButton>
     </div>
     }
 }
