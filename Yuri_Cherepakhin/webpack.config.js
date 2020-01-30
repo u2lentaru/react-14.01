@@ -39,4 +39,10 @@ module.exports = {
         modules: [`${__dirname}/src`, 'node_modules'],
         extensions: ['.js', '.jsx'],
     },
+    devServer: {
+        port: 8080,
+        historyApiFallback: {
+            index: 'index.html'
+        }
+    },
 }
