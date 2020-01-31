@@ -8,9 +8,9 @@ export default class Router extends React.Component {
         return (
             <Switch>
                 <Route exact={ true } path='/' component={ Layout } />
+                <Route exact path='/profile/' component={ Profile } />
                 <Route exact path='/chat/:chatId/' render={ obj => 
-                    <Layout chatId={ Number(obj.match.params.chatId) } /> } />
-                <Route exact={ true } path='/profile/' component={ Profile } />
+                    <Layout chatId={ Number(obj.match.params.chatId) } /> } />      
             </Switch>
         )
     }
