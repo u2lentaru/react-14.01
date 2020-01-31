@@ -24,7 +24,7 @@ export default class Layout extends React.Component {
                 <ChatList/>
             </MuiThemeProvider>
             <MuiThemeProvider>
-                <MessageField/>
+                <MessageField chatId={ this.props.chatId } />
             </MuiThemeProvider>
         </div>
         </>
