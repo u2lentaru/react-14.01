@@ -4,6 +4,7 @@ import './MessageField.css';
 import { TextField, FloatingActionButton } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
 import PropTypes from 'prop-types';
+import send from 'material-ui/svg-icons/content/send';
 
 export default class MessageField extends React.Component {
     constructor(props) {
@@ -13,10 +14,13 @@ export default class MessageField extends React.Component {
 
     static propTypes = {
         chatId: PropTypes.number.isRequired,
+        messages: PropTypes.object.isRequired,
+        chats: PropTypes.object.isRequired,
+        sendMessage: PropTypes.func.isRequired,
     }
 
     state = {
-        chats: {
+        /*chats: {
             1: {title: '1st chat', messageList: [1]},
             2: {title: '2nd chat', messageList: [2,3]},
             3: {title: '3rd chat', messageList: []},
@@ -25,7 +29,7 @@ export default class MessageField extends React.Component {
             1: {name:"Ivan", content:"Hello!"},
             2: {name:"Alex", content:"Hi!"},
             3: {name:"Ivan", content:"Ok."}
-        },
+        },*/
         input: '',
     };
 
@@ -33,9 +37,14 @@ export default class MessageField extends React.Component {
         this.textinput.current.focus();
     }
 
-    //handleClick = (message) => {
-    //    this.sendMessage(message);
-    // };
+    handleSendMessage = (message, sender) => {
+        if (this.state.input.length > 0 || sender === 'Robot' ) {
+            this.props.sendMessage(message, sender);
+        }
+        if (sender === 'me') {
+            this.setState({ input: '' });
+        }
+    };
 
     handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
@@ -44,16 +53,11 @@ export default class MessageField extends React.Component {
 //    handleKeyUp = (event, message) => {
     handleKeyUp = (event) => {
             if (event.keyCode === 13) {
-            //this.sendMessage(message)
-            this.sendMessage(this.state.input, 'me')
-            //Console.log(this.state.input);
+            this.handleSendMessage(this.state.input, 'me')
         }
     };
 
-    sendMessage = (message,sender) => {
-        //this.setState({ 
-        //    messages: [ ...this.state.messages, {name: 'me', content: message}], input: ''
-        //});
+    /*sendMessage = (message,sender) => {
         const { messages, chats, input } = this.state;
         const { chatId } = this.props;
 
@@ -73,28 +77,28 @@ export default class MessageField extends React.Component {
             this.setState({ input: '' })
         }
 
-    };
+    };*/
 
-    componentDidUpdate(prevProps, prevState) {
+    /*componentDidUpdate(prevProps, prevState) {
         const { messages } = this.state;       
         if (Object.keys(prevState.messages).length < Object.keys(messages).length &&
             Object.values(messages)[Object.values(messages).length-1].name !== "Robot") {
-    //        setTimeout(() => {
-    //            this.setState(({messages}) => ({messages: [...messages, {name: 'Robot', content: 'DnD!'}] }))
-    //        },1000);
                 setTimeout(() => this.sendMessage('DnD!','Robot'),1000);
         }
-    }
+    }*/
 
 render() {
-    const { messages, chats } = this.state;
-    const { chatId } = this.props;
+    //const { messages, chats } = this.state;
+    const { chatId, messages, chats } = this.props;
 
     //const MessageElements = this.state.messages.map((text,index) => 
     //(<Message key={index} text {...text}/>));
-    const MessageElements = chats[chatId].messageList.map((messageId, index) => (
-        <Message
-            key={ index }
+    
+    //const MessageElements = chats[chatId].messageList.map((messageId, index) => (
+    const MessageElements = chats[chatId].messageList.map(messageId => (
+            <Message
+            //key={ index }
+            key={ messageId }
             content={ messages[messageId].content }
             name={ messages[messageId].name }
         />));
@@ -111,7 +115,8 @@ render() {
         />
         <FloatingActionButton 
         //onClick={ () => this.handleClick(this.state.input)}>
-        onClick={ () => this.sendMessage(this.state.input, 'me')}>
+            //onClick={ () => this.sendMessage(this.state.input, 'me')}>
+            onClick={ () => this.handleSendMessage(this.state.input, 'me')}>
             <SendIcon/>
         </FloatingActionButton>
     </div>
