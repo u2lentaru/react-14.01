@@ -4,6 +4,6 @@ import messageReducer from './messageReducer';
 
 export default combineReducers({
     chatReducer,
-    messageReducer,
-    profileReducer,
+    //messageReducer,
+    //profileReducer,
 });
