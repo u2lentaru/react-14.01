@@ -1,14 +1,16 @@
 import React from 'react';
+import {bindActionCreators} from 'redux';
+import connect from 'react-redux/es/connect/connect';
 import './Chatlist.css';
 import {List, ListItem} from 'material-ui/List';
-import Divider from 'material-ui/Divider';
 import { Link } from 'react-router-dom';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import AddIcon from 'material-ui/svg-icons/content/add';
 import PropTypes from 'prop-types';
 import { TextField } from 'material-ui';
+import { addChat } from '../../store/chatActions';
 
-export default class ChatList extends React.Component {
+class ChatList extends React.Component {
     static propTypes = {
         chats: PropTypes.object.isRequired,
         addChat: PropTypes.func.isRequired,
@@ -65,23 +67,14 @@ export default class ChatList extends React.Component {
                 />
             </List>
         )
-        
-        /*return <div className='chatList'>
-            <List>
-                <Link to="/chat/1/">
-                    <ListItem primaryText="1st chat"/>
-                </Link>
-                <Divider />
-                <Link to="/chat/2/">
-                    <ListItem primaryText="2nd chat"/>
-                </Link>
-                <Divider />
-                <Link to="/chat/3/">
-                    <ListItem primaryText="3rd chat"/>
-                </Link>
-                <Divider />
-            </List>
-        </div>*/
     }
 
 }
+
+const mapStateToProps = ({ chatReducer }) => ({
+    chats: chatReducer.chats,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ addChat }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps) (ChatList);
