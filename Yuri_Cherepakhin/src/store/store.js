@@ -8,8 +8,8 @@ function initStore() {
     return createStore(
         initReducers,
         initialStore,
-        window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => {},
-        //only for Chrome
+        //window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => {},
+        //only for Chrome, not for Opera!
     );
 }
 
