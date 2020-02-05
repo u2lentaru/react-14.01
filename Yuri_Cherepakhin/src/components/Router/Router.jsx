@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Layout from '../Layout/Layout';
-import Profile from '../Profile/Profile';
+import Layout from '../../containers/Layout/Layout';
+import Profile from '../../containers/Profile/Profile';
 
 export default class Router extends React.Component {
     render() {
