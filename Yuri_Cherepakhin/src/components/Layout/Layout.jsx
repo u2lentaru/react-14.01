@@ -1,19 +1,19 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import connect from 'react-redux/es/connect/connect';
+//import { bindActionCreators } from 'redux';
+//import connect from 'react-redux/es/connect/connect';
 import './Layout.css';
 import Header from '../Header/Header';
 import ChatList from '../ChatList/ChatList';
 import MessageField from '../MessageField/MessageField';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
-import { sendMessage } from '../../store/messageActions';
+//import { sendMessage } from '../../store/messageActions';
 
-class Layout extends React.Component {
+export default class Layout extends React.Component {
 
     static propTypes = {
         chatId: PropTypes.number,
-        sendMessage: PropTypes.func.isRequired,
+        //sendMessage: PropTypes.func.isRequired,
     };
 
     static defaultProps = {
@@ -25,24 +25,24 @@ class Layout extends React.Component {
             1: {title: '1st chat', messageList: [1]},
             2: {title: '2nd chat', messageList: [2,3]},
             3: {title: '3rd chat', messageList: []},
-        },*/
+        },
         messages: {
             1: {name:"Ivan", content:"Hello!"},
             2: {name:"Alex", content:"Hi!"},
             3: {name:"Ivan", content:"Ok."}
-        },
+        },*/
         //input: '',
     };
 
-    componentDidUpdate(prevProps, prevState) {
+    /*componentDidUpdate(prevProps, prevState) {
         const { messages } = this.state;       
         if (Object.keys(prevState.messages).length < Object.keys(messages).length &&
             Object.values(messages)[Object.values(messages).length-1].name !== "Robot") {
                 setTimeout(() => this.sendMessage('DnD!','Robot'),1000);
         }
-    }
+    }*/
 
-    sendMessage = (message,sender) => {
+    /*sendMessage = (message,sender) => {
         //const { messages, chats } = this.state;
         const { messages } = this.state;
         const { chatId } = this.props;
@@ -52,16 +52,10 @@ class Layout extends React.Component {
                 messages: {...messages,
                     [messageId]: {name: sender, content: message}},
 
-                /*chats: {...chats,
-                    [chatId]: { ...chats[chatId],
-                        messageList: [...chats[chatId]['messageList'], messageId]
-                    }
-                },*/
-
             });
             this.props.sendMessage(messageId, message, sender, chatId);
 
-    };
+    };*/
 
 
     /*addChat = (title) => {
@@ -84,8 +78,9 @@ class Layout extends React.Component {
             <MuiThemeProvider>
                 <MessageField 
                     chatId={ this.props.chatId }
-                    messages={ this.state.messages }
-                    sendMessage={ this.sendMessage } />
+                    //messages={ this.state.messages }
+                    //sendMessage={ this.sendMessage } 
+                    />
             </MuiThemeProvider>
         </div>
         </>
@@ -93,8 +88,8 @@ class Layout extends React.Component {
 }
 
 
-const mapStateToProps = ({}) => ({});
+//const mapStateToProps = ({}) => ({});
 
-const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
+//const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps) (Layout);
+//export default connect(mapStateToProps, mapDispatchToProps) (Layout);
