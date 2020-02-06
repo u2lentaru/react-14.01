@@ -1,5 +1,6 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import initReducers from './';
+import middlewares from '../middlewares';
 
 
 function initStore() {
@@ -8,8 +9,11 @@ function initStore() {
     return createStore(
         initReducers,
         initialStore,
+        compose(
+            applyMiddleware(...middlewares),
         //window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => {},
         //only for Chrome, not for Opera!
+        ),
     );
 }
 
