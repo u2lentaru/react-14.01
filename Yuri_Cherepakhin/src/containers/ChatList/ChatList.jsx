@@ -44,12 +44,13 @@ class ChatList extends React.Component {
 
     render() {
         const { chats } = this.props;
+        //console.log(chatId);
         const chatElements = Object.keys(chats).map(chatId => (
             //<Link key={ chatId } to={ `/chat/${chatId}` }>
                 <ListItem 
                     key={ chatId }
-                    primaryText={ chats[chatId].title }
-                    //primaryText={ chats[chatId].title + (this.props.chats[chatId].unread && 'Новое сообщение') }
+                    //primaryText={ chats[chatId].title }
+                    primaryText={ chats[chatId].title + (chats[chatId].unread && 'Новое сообщение') }
                     leftIcon={ <ContentSend /> }
                     onClick = { () => this.handleNavigate(`/chat/${chatId}`) }
                 />
