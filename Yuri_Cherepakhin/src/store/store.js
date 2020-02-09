@@ -8,7 +8,7 @@ import initReducers from './';
 import middlewares from '../middlewares';
 
 const persistConfig = {
-    key: 'geekmessenger5',
+    key: 'geekmessenger7',
     storage,
     stateReconciler: autoMergeLevel2,
     whiteList: ['messageReducer', 'chatReducer', 'profileReducer'],
