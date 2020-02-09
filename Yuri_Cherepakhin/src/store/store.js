@@ -8,7 +8,7 @@ import initReducers from './';
 import middlewares from '../middlewares';
 
 const persistConfig = {
-    key: 'geekmessenger',
+    key: 'geekmessenger5',
     storage,
     stateReconciler: autoMergeLevel2,
     whiteList: ['messageReducer', 'chatReducer', 'profileReducer'],
@@ -39,10 +39,14 @@ function initStore() {
     const initialStore = {};
 
     return createStore(
-        initReducers,
+        //initReducers,
+        initReducers(history),
         initialStore,
+        compose(
+            applyMiddleware(routerMiddleware(history), ...middlewares),
         //window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => {},
         //only for Chrome, not for Opera!
+        ),
     );
 }*/
 

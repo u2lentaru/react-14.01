@@ -10,12 +10,11 @@ export default store => next => (action) => {
                 clearTimeout(timersId[action.chatId]);
                 timersId[action.chatId] = setTimeout(() => store.dispatch(sendMessage(Object.keys(store.getState().messageReducer.
                 messages).length + 1, 'DnD!', 'Robot', action.chatId)), 3000);
-                //next(action);
             }
             else {
                 //const {chatId, sender} = action.payload;
                 //next(action);
-                console.log(action.payload.location.pathname.split('/')[2]);
+                //console.log(action.payload.location.pathname.split('/')[2]);
                 console.log(store.getState().router.location.pathname, ' ', action.chatId);
                 if (store.getState().router.location.pathname === '/chats/' + action.chatId) {
                 //if (action.payload.location.pathname === '/chats/' + action.chatId) {
