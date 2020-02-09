@@ -5,23 +5,30 @@ let timersId = {};
 
 export default store => next => (action) => {
     switch (action.type) {
-        case SEND_MESSAGE:
+        case SEND_MESSAGE: {
             if (action.sender === 'me') {
                 clearTimeout(timersId[action.chatId]);
                 timersId[action.chatId] = setTimeout(() => store.dispatch(sendMessage(Object.keys(store.getState().messageReducer.
-                messages).length + 1, 'DnD!', 'Robot', action.chatId)), 3000) 
+                messages).length + 1, 'DnD!', 'Robot', action.chatId)), 3000);
+                //next(action);
             }
             else {
                 //const {chatId, sender} = action.payload;
-                //console.log(store.getState().router.location.pathname, ' ', action.chatId)
+                //next(action);
+                console.log(action.payload.location.pathname.split('/')[2]);
+                console.log(store.getState().router.location.pathname, ' ', action.chatId);
                 if (store.getState().router.location.pathname === '/chats/' + action.chatId) {
+                //if (action.payload.location.pathname === '/chats/' + action.chatId) {
                     store.dispatch(fire(chatId));
                 }
             }
+        }
         case '@@router/LOCATION_CHANGE': {
-            console.log(action.payload.location.pathname.split('/')[2])
-            //const id = action.payload.location.pathname.split('/')[2];
-            //store.dispatch(unfire(id));
+            //console.log(action.payload.location.pathname.split('/')[2])
+            next(action);
+            console.log(store.getState().router.location.pathname.split('/')[2]);
+            const id = store.getState().router.location.pathname.split('/')[2];
+            store.dispatch(unfire(id));
         }
 
     }

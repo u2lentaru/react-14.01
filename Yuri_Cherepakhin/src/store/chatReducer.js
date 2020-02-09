@@ -36,6 +36,7 @@ export default function chatReducer(store = initialStore, action) {
             });
         }
         case FIRE: {
+            console.log('fire');
             return update(store, {
                 chats: { $merge: { [action.chatId]: {
                     title: store.chats[action.chatId].title,
@@ -45,6 +46,7 @@ export default function chatReducer(store = initialStore, action) {
             });
         }
         case UNFIRE: {
+            console.log('unfire');
             return update(store, {
                 chats: { $merge: { [action.chatId]: {
                     title: store.chats[action.chatId].title,

@@ -8,12 +8,12 @@ export const addChat = (title) => ({
     title,
 });
 
-export const fire = (id) => ({
+export const fire = (chatId) => ({
     type: FIRE,
     chatId,
 });
 
-export const unfire = (id) => ({
+export const unfire = (chatId) => ({
     type: UNFIRE,
     chatId,
 });
