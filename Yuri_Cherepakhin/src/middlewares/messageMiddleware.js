@@ -15,9 +15,10 @@ export default store => next => (action) => {
                 //next(action);
                 //console.log(action.payload.location.pathname.split('/')[2]);
                 console.log(store.getState().router.location.pathname, ' ', action.chatId);
-                if (store.getState().router.location.pathname === '/chats/' + action.chatId) {
+                if (store.getState().router.location.pathname === '/chat/' + action.chatId) {
                 //if (action.payload.location.pathname === '/chats/' + action.chatId) {
-                    store.dispatch(fire(chatId));
+                    console.log('call fire!');
+                    store.dispatch(fire(action.chatId));
                 }
             }
         }
