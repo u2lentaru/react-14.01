@@ -12,11 +12,9 @@ export default store => next => (action) => {
                 messages).length + 1, 'DnD!', 'Robot', action.chatId)), 3000);
             }
             else {
-                //next(action);
                 //console.log(action.payload.location.pathname.split('/')[2]);
                 console.log(store.getState().router.location.pathname, ' ', action.chatId);
                 if (store.getState().router.location.pathname !== '/chat/' + action.chatId) {
-                //if (action.payload.location.pathname === '/chats/' + action.chatId) {
                     console.log('call fire!');
                     store.dispatch(fire(action.chatId));
                 }
@@ -24,10 +22,9 @@ export default store => next => (action) => {
         }
         case '@@router/LOCATION_CHANGE': {
             //console.log(action.payload.location.pathname.split('/')[2])
-            //next(action);
             console.log(store.getState().router.location.pathname.split('/')[2]);
             const id = store.getState().router.location.pathname.split('/')[2];
-            //store.dispatch(unfire(id));
+            store.dispatch(unfire(id));
         }
 
     }
