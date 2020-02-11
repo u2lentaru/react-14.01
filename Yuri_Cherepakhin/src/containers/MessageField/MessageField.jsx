@@ -26,9 +26,12 @@ class MessageField extends React.Component {
         input: '',
     };
 
-    //componentDidMount() {
-    //    this.textinput.current.focus();
-    //}
+    componentDidMount() {
+        //this.textinput.current.focus();
+        fetch('/api/messages.json'
+        ).then(body => body.json()).
+        then(json => console.log(json))
+    }
 
     handleSendMessage = (message, sender) => {
         if (this.state.input.length > 0 || sender === 'Robot' ) {
