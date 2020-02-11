@@ -1,0 +1,14 @@
+[
+    {
+        "id": 1,
+        "chatId": 1,
+        "content": "Hello!",
+        "name": "Robot"
+    },
+    {
+        "id": 2,
+        "chatId": 2,
+        "content": "Hi!",
+        "name": "Robot"
+    }
+]
