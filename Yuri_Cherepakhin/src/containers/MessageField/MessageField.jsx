@@ -30,7 +30,12 @@ class MessageField extends React.Component {
         //this.textinput.current.focus();
         fetch('/api/messages.json'
         ).then(body => body.json()).
-        then(json => console.log(json))
+        //then(json => console.log(json))
+        then(json => {
+            json.forEach(msg =>{
+                this.props.sendMessage(msg.id, msg.content, msg.name, msg.chatId);
+            })
+        })
     }
 
     handleSendMessage = (message, sender) => {

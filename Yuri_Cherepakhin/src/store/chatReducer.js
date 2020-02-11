@@ -5,7 +5,7 @@ import { ADD_CHAT, FIRE, UNFIRE } from './chatActions';
 const initialStore = {
     chats: {
         1: {title: 'Chat 1', unread: true, messageList: [1]},
-        2: {title: 'Chat 2', unread: false, messageList: [2]},
+        2: {title: 'Chat 2', unread: false, messageList: [2,3]},
         3: {title: 'Chat 3', unread: false, messageList: []},
         //1: {title: 'Chat 1', messageList: [1]},
         //2: {title: 'Chat 2', messageList: [2]},
