@@ -9,9 +9,20 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import initStore, { history } from './store/store';
 
 
-const { store, persistor } = initStore();
+//const { store, persistor } = initStore();
 
 ReactDOM.render(
+    <Provider store={ initStore() }>
+            <ConnectedRouter history={history}>
+                <MuiThemeProvider>
+                    <Router/>
+                </MuiThemeProvider>
+            </ConnectedRouter>
+    </Provider>,
+ document.getElementById('root'));
+
+ /*
+ ReactDOM.render(
     <Provider store={ store }>
         <PersistGate loading={ null } persistor={ persistor } >
             <ConnectedRouter history={history}>
@@ -22,3 +33,4 @@ ReactDOM.render(
         </PersistGate>
     </Provider>,
  document.getElementById('root'));
+ */

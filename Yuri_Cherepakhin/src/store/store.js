@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+/*import { createStore, applyMiddleware, compose } from 'redux';
 import { createBrowserHistory } from 'history';
 import { routerMiddleware } from 'connected-react-router';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -12,7 +12,6 @@ const persistConfig = {
     storage,
     stateReconciler: autoMergeLevel2,
     whiteList: ['messageReducer', 'chatReducer', 'profileReducer'],
-    //whiteList: [],
 };
 
 export const history = createBrowserHistory()
@@ -35,7 +34,18 @@ function initStore() {
     return { store, persistor };
 }
 
-/*function initStore() {
+export default initStore;
+*/
+
+import { createStore, applyMiddleware, compose } from 'redux';
+import { createBrowserHistory } from 'history';
+import { routerMiddleware } from 'connected-react-router';
+import initReducers from './';
+import middlewares from '../middlewares';
+
+export const history = createBrowserHistory()
+
+function initStore() {
     const initialStore = {};
 
     return createStore(
@@ -43,11 +53,12 @@ function initStore() {
         initReducers(history),
         initialStore,
         compose(
+            //applyMiddleware(...middlewares),
             applyMiddleware(routerMiddleware(history), ...middlewares),
         //window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : () => {},
         //only for Chrome, not for Opera!
         ),
     );
-}*/
+}
 
 export default initStore;

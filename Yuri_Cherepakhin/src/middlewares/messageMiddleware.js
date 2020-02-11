@@ -16,7 +16,7 @@ export default store => next => (action) => {
                 console.log(store.getState().router.location.pathname, ' ', action.chatId);
                 if (store.getState().router.location.pathname !== '/chat/' + action.chatId) {
                     console.log('call fire!');
-                    store.dispatch(fire(action.chatId));
+                    //store.dispatch(fire(action.chatId));
                 }
             }
         }
@@ -24,7 +24,7 @@ export default store => next => (action) => {
             //console.log(action.payload.location.pathname.split('/')[2])
             console.log(store.getState().router.location.pathname.split('/')[2]);
             const id = store.getState().router.location.pathname.split('/')[2];
-            store.dispatch(unfire(id));
+            //store.dispatch(unfire(id));
         }
 
     }
