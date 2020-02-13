@@ -24,13 +24,14 @@ export default function profileReducer(store = initialStore, action) {
             const profile = {};
             action.payload.forEach(msg => {
                 const { name, email } = msg;
+                //console.log('name,email ',name,email);
                 //console.log('msg ',msg);
                 profile[msg.id] = { name, email };
                 //console.log('profile[msg.id] ', profile[msg.id]);
             });
             return update(store, {
-                //profile: { $set: messages },
-                profile: { $merge: profile },
+                profile: { $set: profile[1] },
+                //profile: { $merge: profile },
                 isLoading: { $set: false },
             });
         }
