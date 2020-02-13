@@ -14,9 +14,9 @@ export default store => next => (action) => {
             }
             else {
                 //console.log(action.payload.location.pathname.split('/')[2]);
-                console.log(store.getState().router.location.pathname, ' ', action.chatId);
+                //console.log(store.getState().router.location.pathname, ' ', action.chatId);
                 if (store.getState().router.location.pathname !== '/chat/' + action.chatId) {
-                    console.log('call fire!');
+                    //console.log('call fire!');
                     store.dispatch(fire(action.chatId));
                 }
             }
@@ -24,9 +24,9 @@ export default store => next => (action) => {
         case '@@router/LOCATION_CHANGE': {
             //next(action);
             //console.log(action.payload.location.pathname.split('/')[2])
-            console.log(store.getState().router.location.pathname.split('/')[2]);
+            //console.log(store.getState().router.location.pathname.split('/')[2]);
             const id = store.getState().router.location.pathname.split('/')[2];
-            console.log('typeof id',typeof id);
+            //console.log('typeof id',typeof id);
             if (typeof id == 'string')
                 store.dispatch(unfire(id));
         }
