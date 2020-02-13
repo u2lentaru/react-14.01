@@ -1,5 +1,5 @@
 import update from 'react-addons-update';
-import { SEND_MESSAGE } from './messageActions';
+import { SEND_MESSAGE, SUCCESS_MESSAGES_LOADING } from './messageActions';
 import { ADD_CHAT, FIRE, UNFIRE } from './chatActions';
 
 const initialStore = {
@@ -23,6 +23,17 @@ export default function chatReducer(store = initialStore, action) {
                     unread: store.chats[action.chatId].unread,
                     messageList: [...store.chats[action.chatId].messageList, action.messageId]
                 } } },
+            });
+        }
+        case SUCCESS_MESSAGES_LOADING: {
+            const chats = {...store.chats};
+            action.payload.forEach(msg => {
+                const { id, chatId } = msg;
+                chats[chatId].messageList.push(id);
+            });
+            return update(store, {
+                chats: { $set: chats },
+                isLoading: { $set: false },
             });
         }
         case ADD_CHAT: {

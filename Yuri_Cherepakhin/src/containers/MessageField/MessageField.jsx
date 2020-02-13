@@ -6,7 +6,8 @@ import './MessageField.css';
 import { TextField, FloatingActionButton } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
 import PropTypes from 'prop-types';
-import { sendMessage } from '../../store/messageActions';
+import CircularProgress from 'material-ui/CircularProgress';
+import { sendMessage, loadMessages } from '../../store/messageActions';
 
 
 class MessageField extends React.Component {
@@ -20,6 +21,7 @@ class MessageField extends React.Component {
         messages: PropTypes.object.isRequired,
         chats: PropTypes.object.isRequired,
         sendMessage: PropTypes.func.isRequired,
+        isLoading: PropTypes.bool.isRequired,
     }
 
     state = {
@@ -27,7 +29,8 @@ class MessageField extends React.Component {
     };
 
     componentDidMount() {
-        //this.textinput.current.focus();
+        this.props.loadMessages();
+        /*//this.textinput.current.focus();
         fetch('/api/messages.json'
         ).then(body => body.json()).
         //then(json => console.log(json))
@@ -35,7 +38,7 @@ class MessageField extends React.Component {
             json.forEach(msg =>{
                 this.props.sendMessage(msg.id, msg.content, msg.name, msg.chatId);
             })
-        })
+        })*/
     }
 
     handleSendMessage = (message, sender) => {
@@ -73,6 +76,9 @@ class MessageField extends React.Component {
     }*/
 
 render() {
+    if (this.props.isLoading) {
+        return <CircularProgress />
+    }
 
 
     const { chatId, messages, chats } = this.props;
@@ -104,8 +110,9 @@ render() {
 const mapStateToProps = ({ chatReducer, messageReducer }) => ({
     chats: chatReducer.chats,
     messages: messageReducer.messages,
+    isLoading: messageReducer.isLoading,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ sendMessage, loadMessages }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps) (MessageField);
