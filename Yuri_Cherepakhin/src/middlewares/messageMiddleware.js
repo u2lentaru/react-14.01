@@ -24,10 +24,10 @@ export default store => next => (action) => {
         case '@@router/LOCATION_CHANGE': {
             //next(action);
             //console.log(action.payload.location.pathname.split('/')[2])
-            //console.log(store.getState().router.location.pathname.split('/')[2]);
+            //console.log(store.getState().router.location.pathname,store.getState().router.location.pathname.split('/')[2]);
             const id = store.getState().router.location.pathname.split('/')[2];
             //console.log('typeof id',typeof id);
-            if (typeof id == 'string')
+            if (typeof id == 'string' && id.length > 0)
                 store.dispatch(unfire(id));
         }
 
