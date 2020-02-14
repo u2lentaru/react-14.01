@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import connect from 'react-redux/es/connect/connect';
-//import mapDispatchToProps from 'react-redux/es/connect/mapDispatchToProps';
 import { loadProfile } from '../../store/profileActions';
 import CircularProgress from 'material-ui/CircularProgress';
 
