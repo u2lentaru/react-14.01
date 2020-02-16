@@ -28,5 +28,13 @@
             console.log('ServiceWorker не поддерживается');
         }
     </script>
+    <script>
+        window.addEventListener('appinstalled', (evt) => {
+            fetch('http://localhost:8080/', {
+                method: 'GET',
+                credentials: 'include',
+            });
+        });
+    </script>
 </body>
 </html>
