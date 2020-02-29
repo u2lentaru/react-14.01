@@ -12,25 +12,29 @@ function notifications​(window) {
         alert('Извините, push-уведомления не поддерживаются вашим браузером.');
         return;
     }
-    navigator.serviceWorker.ready.then(function(registration) {
-        registration.pushManager.getSubscription().then(function(subscription) {
-            if (subscription) {
-                changePushStatus(true);
-            }
-            else {
-                changePushStatus(false)
-            }
-        })
-        .catch(function(error) {
-            console.error('Возникла ошибка', error);
+
+    navigator.serviceWorker.ready
+        .then(function(registration) {
+            registration.pushManager.getSubscription()
+                .then(function(subscription) {
+                    if (subscription) {
+                        changePushStatus(true);
+                    }
+                    else {
+                        changePushStatus(false)
+                    }
+                })
+                .catch(function(error) {
+                    console.error('Возникла ошибка', error);
+            });
         });
-    });
     }
 
     function subscribePush​() {
         navigator.serviceWorker.ready.then(function(registration) {
             if (!registration.pushManager) {
                 alert('push-уведомления не поддерживаются вашим браузером.');
+                return false;
             }
             registration.pushManager.subscribe({
                 userVisibleOnly: true
@@ -49,28 +53,29 @@ function notifications​(window) {
     }
 
     function unsubscribePush​() {
-        navigator.serviceWorker.ready.then(function(registration) {
-            registration.pushManager.getSubscription()
-            .then(function(subscription) {
-                if (!subscription) {
-                    alert('Невозможно отписаться от push-уведомлений.');
-                    return;
-                }
-                subscription.unsubscribe()
-                .then(function() {
-                    alert('Успешно отписаны.');
-                    console.info('push-уведомлений отменены.');
-                    console.log(subscription);
-                    changePushStatus(false);
-                })
-                .catch(function(error) {
-                    console.error(error);
-                });
+        navigator.serviceWorker.ready
+            .then(function(registration) {
+                registration.pushManager.getSubscription()
+                    .then(function(subscription) {
+                        if (!subscription) {
+                            alert('Невозможно отписаться от push-уведомлений.');
+                            return;
+                        }
+                        subscription.unsubscribe()
+                            .then(function() {
+                                alert('Успешно отписаны.');
+                                console.info('push-уведомлений отменены.');
+                                console.log(subscription);
+                                changePushStatus(false);
+                            })
+                            .catch(function(error) {
+                                console.error(error);
+                            });
+                    })
+                    .catch(function(error) {
+                        console.error('Не получилось отписаться от push-уведомлений.');
+                    });
             })
-            .catch(function(error) {
-                console.error('Не получилось отписаться от push-уведомлений.');
-            });
-        })
     }
     
     function changePushStatus(status) {
@@ -78,11 +83,11 @@ function notifications​(window) {
         pushElement.checked = status;
         if (status) {
             pushElement.classList.add('active');
-            pushElement.src = '../images/push-on.png';
+            pushImgElement.src = '../images/push-on.png';
         }
         else {
             pushElement.classList.remove('active');
-            pushElement.src = '../images/push-off.png';
+            pushImgElement.src = '../images/push-off.png';
         }
     }
 
@@ -96,6 +101,7 @@ function notifications​(window) {
         }
     });
 
-    isPushSupported();      
+    isPushSupported();
 };
+
 setTimeout(function() { notifications(window) }, 1000);
