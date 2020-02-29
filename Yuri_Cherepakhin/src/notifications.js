@@ -98,3 +98,4 @@ function notifications​(window) {
 
     isPushSupported();      
 };
+setTimeout(function() { notifications(window) }, 1000);
