@@ -47,5 +47,6 @@
 "background_color": "blue",
 "theme_color": "yellow",
 "orientation": "any",
-"display": "standalone"
+"display": "standalone",
+"gcm_sender_id": "1234567890"
 }
