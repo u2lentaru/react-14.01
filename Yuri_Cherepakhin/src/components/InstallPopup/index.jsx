@@ -1,8 +1,8 @@
 import React from 'react';
 import Close from 'material-ui/svg-icons/navigation/close';
-import './styles.css'​;
+import './styles.css';
 
-class InstallPopup extends React.useContext {
+class InstallPopup extends React.Component {
     state = {
         isShown: false,
     };
@@ -35,7 +35,7 @@ class InstallPopup extends React.useContext {
                     <Close className = "close-install-message-icon" onClick = {this.handleHide}/>
                     <div style = {{ paddingRight: '15px' }}>
                         Установи приложение  на свой iPhone: нажми «Поделиться», 
-                        а затем на экран «Домой»​ >
+                        а затем на экран «Домой»​
                     </div>
                 </div>
             </div>
