@@ -83,11 +83,11 @@ function notifications​(window) {
         pushElement.checked = status;
         if (status) {
             pushElement.classList.add('active');
-            pushImgElement.src = '../images/push-on.png';
+            pushImgElement.src = './components/PushToggle/push-on.png';
         }
         else {
             pushElement.classList.remove('active');
-            pushImgElement.src = '../images/push-off.png';
+            pushImgElement.src = './components/PushToggle/push-off.png';
         }
     }
 
