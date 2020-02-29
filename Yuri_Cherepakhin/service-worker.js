@@ -60,8 +60,8 @@ self.addEventListener('fetch', function(event) {
     }
 });
 
+//Push Notification
 self.addEventListener('push', function(event) {
-  
   console.info('Event: Push');
 
   var title = 'Тут новый пуш прилетел';
@@ -75,4 +75,5 @@ self.addEventListener('push', function(event) {
   event.waitUntil(
     self.registration.showNotification(title, body)
   );
+
 });

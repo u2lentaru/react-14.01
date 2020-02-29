@@ -83,11 +83,11 @@ function isPushSupported() {
         pushElement.checked = status;
         if (status) {
             pushElement.classList.add('active');
-            pushImgElement.src = './components/PushToggle/push-on.png';
+            pushImgElement.src = 'src/components/PushToggle/push-on.png';
         }
         else {
             pushElement.classList.remove('active');
-            pushImgElement.src = './components/PushToggle/push-off.png';
+            pushImgElement.src = 'src/components/PushToggle/push-off.png';
         }
     }
 
