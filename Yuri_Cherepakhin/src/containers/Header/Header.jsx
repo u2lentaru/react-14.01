@@ -26,8 +26,8 @@ class Header extends React.Component {
 
     render() {
         return <div className='Header'>
+        Chat { this.props.chatId }
         <PushToggle/>
-        Chat { this.props.chatId } 
         <Link to='/profile/'>
                 <span>Profile: { this.props.profile.name } </span>
         </Link>

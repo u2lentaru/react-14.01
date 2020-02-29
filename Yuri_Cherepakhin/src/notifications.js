@@ -1,9 +1,9 @@
-function notifications​(window) {
+function notifications(window){
     'use strict';
     var pushElement = document.querySelector('.push');
     var pushImgElement = document.querySelector('.push__image');
     
-    function isPushSupported​() {
+function isPushSupported() {
     if (Notification.permission === 'denied') {
         alert('Вы заблокировали push-уведомления.');
         return;
@@ -30,7 +30,7 @@ function notifications​(window) {
         });
     }
 
-    function subscribePush​() {
+    function subscribePush() {
         navigator.serviceWorker.ready.then(function(registration) {
             if (!registration.pushManager) {
                 alert('push-уведомления не поддерживаются вашим браузером.');
@@ -52,7 +52,7 @@ function notifications​(window) {
         })
     }
 
-    function unsubscribePush​() {
+    function unsubscribePush() {
         navigator.serviceWorker.ready
             .then(function(registration) {
                 registration.pushManager.getSubscription()
