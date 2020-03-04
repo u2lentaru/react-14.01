@@ -39,4 +39,9 @@ module.exports = {
         modules: [`${__dirname}/src`, 'node_modules'],
         extensions: ['.js', '.jsx'],
     },
+    devServer: {
+        port: 8080,
+        historyApiFallback: true,
+    },
+    devtool: 'cheap-inline-module-source-map',
 }
