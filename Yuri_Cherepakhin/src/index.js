@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import initStore, { history } from './store/store';
+import InstallPopup from "./components/InstallPopup";
 
 
 //const { store, persistor } = initStore();
@@ -15,7 +16,10 @@ ReactDOM.render(
     <Provider store={ initStore() }>
             <ConnectedRouter history={history}>
                 <MuiThemeProvider>
+                    <div>
                     <Router/>
+                    <InstallPopup/>
+                    </div>
                 </MuiThemeProvider>
             </ConnectedRouter>
     </Provider>,

@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import connect from 'react-redux/es/connect/connect';
 import { loadProfile } from '../../store/profileActions';
 import CircularProgress from 'material-ui/CircularProgress';
+import PushToggle from '../../components/PushToggle';
 
 class Header extends React.Component {
 
@@ -24,7 +25,9 @@ class Header extends React.Component {
     }
 
     render() {
-        return <div className='Header'>Chat { this.props.chatId } 
+        return <div className='Header'>
+        Chat { this.props.chatId }
+        <PushToggle/>
         <Link to='/profile/'>
                 <span>Profile: { this.props.profile.name } </span>
         </Link>
