@@ -1,17 +1,20 @@
 import React from 'react';
+import {bindActionCreators} from 'redux';
+import connect from 'react-redux/es/connect/connect';
 import './Chatlist.css';
 import {List, ListItem} from 'material-ui/List';
-import Divider from 'material-ui/Divider';
-import { Link } from 'react-router-dom';
+import { push } from 'connected-react-router';
 import ContentSend from 'material-ui/svg-icons/content/send';
 import AddIcon from 'material-ui/svg-icons/content/add';
 import PropTypes from 'prop-types';
 import { TextField } from 'material-ui';
+import { addChat } from '../../store/chatActions';
 
-export default class ChatList extends React.Component {
+class ChatList extends React.Component {
     static propTypes = {
         chats: PropTypes.object.isRequired,
         addChat: PropTypes.func.isRequired,
+        push: PropTypes.func.isRequired,
     };
 
     state = {
@@ -35,14 +38,23 @@ export default class ChatList extends React.Component {
         }
     };
 
+    handleNavigate = (link) => {
+        this.props.push(link);
+    };
+
     render() {
         const { chats } = this.props;
+        //console.log(chatId);
         const chatElements = Object.keys(chats).map(chatId => (
-            <Link key={ chatId } to={ `/chat/${chatId}` }>
+            //<Link key={ chatId } to={ `/chat/${chatId}` }>
                 <ListItem 
-                    primaryText={ chats[chatId].title }
-                    leftIcon={ <ContentSend /> } />
-            </Link>
+                    key={ chatId }
+                    //primaryText={ chats[chatId].title }
+                    primaryText={ chats[chatId].title + (chats[chatId].unread && 'Новое сообщение') }
+                    leftIcon={ <ContentSend /> }
+                    onClick = { () => this.handleNavigate(`/chat/${chatId}`) }
+                />
+            //</Link>
         ));
 
 
@@ -65,23 +77,14 @@ export default class ChatList extends React.Component {
                 />
             </List>
         )
-        
-        /*return <div className='chatList'>
-            <List>
-                <Link to="/chat/1/">
-                    <ListItem primaryText="1st chat"/>
-                </Link>
-                <Divider />
-                <Link to="/chat/2/">
-                    <ListItem primaryText="2nd chat"/>
-                </Link>
-                <Divider />
-                <Link to="/chat/3/">
-                    <ListItem primaryText="3rd chat"/>
-                </Link>
-                <Divider />
-            </List>
-        </div>*/
     }
 
 }
+
+const mapStateToProps = ({ chatReducer }) => ({
+    chats: chatReducer.chats,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators({ addChat, push }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps) (ChatList);

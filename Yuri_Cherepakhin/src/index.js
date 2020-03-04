@@ -1,15 +1,24 @@
 //console.warn("Привет! сейчас ",(new Date).valueOf());
 import React from "react";
 import ReactDOM from "react-dom";
-import MessageField from "./components/MessageField/MessageField";
 import Router from "./components/Router/Router";
-import { BrowserRouter } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import initStore, { history } from './store/store';
+
+
+const { store, persistor } = initStore();
 
 ReactDOM.render(
-    <BrowserRouter>
-        <MuiThemeProvider>
-            <Router/>
-        </MuiThemeProvider>
-    </BrowserRouter>,
+    <Provider store={ store }>
+        <PersistGate loading={ null } persistor={ persistor } >
+            <ConnectedRouter history={history}>
+                <MuiThemeProvider>
+                    <Router/>
+                </MuiThemeProvider>
+            </ConnectedRouter>
+        </PersistGate>
+    </Provider>,
  document.getElementById('root'));
